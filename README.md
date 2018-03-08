@@ -1,3 +1,5 @@
+NB: Forked because the original uses `git clone` over SSH to retrieve submodules and a built-in provider which doesn't allow flexibility in how credentials are provided. No guarentees that any of the above is fixed here, however.
+
 # Terraform Rancher HA on AWS
 
 This project contain Terraform modules that will provide us with a full Rancher HA in a secure infrastructure, this project have been highly inspired by [this end out](https://thisendout.com/2016/05/04/deploying-rancher-with-ha-using-rancheros-aws-terraform-letsencrypt/) guys you can see their work on the following repo https://github.com/nextrevision/terraform-rancher-ha-example
