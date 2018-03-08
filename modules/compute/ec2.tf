@@ -1,5 +1,7 @@
 module "instance" {
-    source = "git::ssh://git@github.com/moltin/terraform-modules.git//aws/compute/ec2_instance?ref=0.2.1"
+    #source "git::ssh://git@github.com/moltin/terraform-modules.git//aws/compute/ec2_instance?ref=0.2.1"
+    source = "github.com/moltin/terraform-modules//aws/compute/ec2_instance"
+    version = "0.2.1"
 
     name           = "${var.name}"
     instance_count = "${var.instance_count}"
@@ -33,7 +35,9 @@ module "instance" {
  * TCP 9345 / self
  */
 module "sg_self_rancher" {
-    source = "git::ssh://git@github.com/moltin/terraform-modules.git//aws/networking/security_group/sg_rancher?ref=0.2.1"
+    #source "git::ssh://git@github.com/moltin/terraform-modules.git//aws/networking/security_group/sg_rancher?ref=0.2.1"
+    source = "github.com/moltin/terraform-modules//aws/networking/security_group/sg_rancher"
+    version = "0.2.1"
 
     name            = "${var.name}"
     vpc_id          = "${data.terraform_remote_state.network.vpc_id}"
@@ -51,7 +55,9 @@ module "sg_self_rancher" {
  * TPC 8080 / sg_membership_elb_https
  */
 module "sg_ingress_elb_https" {
-    source = "git::ssh://git@github.com/moltin/terraform-modules.git//aws/networking/security_group/sg_custom_group?ref=0.2.1"
+    #source "git::ssh://git@github.com/moltin/terraform-modules.git//aws/networking/security_group/sg_custom_group?ref=0.2.1"
+    source = "github.com/moltin/terraform-modules//aws/networking/security_group/sg_custom_group"
+    version = "0.2.1"
 
     name        = "${var.name}-sg-ingress-elb-https"
     vpc_id      = "${data.terraform_remote_state.network.vpc_id}"
@@ -80,7 +86,9 @@ resource "aws_security_group_rule" "elb_https_to_rancher_node" {
  * TPC 22 / sg_membership_bastion
  */
 module "sg_ingress_bastion" {
-    source = "git::ssh://git@github.com/moltin/terraform-modules.git//aws/networking/security_group/sg_custom_group?ref=0.2.1"
+    #source "git::ssh://git@github.com/moltin/terraform-modules.git//aws/networking/security_group/sg_custom_group?ref=0.2.1"
+    source = "github.com/moltin/terraform-modules//aws/networking/security_group/sg_custom_group"
+    version = "0.2.1"
 
     name        = "${var.name}-sg-ingress-bastion"
     vpc_id      = "${data.terraform_remote_state.network.vpc_id}"

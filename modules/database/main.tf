@@ -84,7 +84,9 @@ variable "vpc_cidr" {
 }
 
 module "rds_cluster" {
-    source = "git::ssh://git@github.com/moltin/terraform-stack.git//aws/rds_cluster?ref=0.1.6"
+    #source "git::ssh://git@github.com/moltin/terraform-stack.git//aws/rds_cluster?ref=0.1.6"
+    source = "github.com/moltin/terraform-stack//aws/rds_cluster"
+    version = "0.1.6"
 
     name                          = "${var.name}"
     vpc_id                        = "${data.terraform_remote_state.network.vpc_id}"
@@ -102,7 +104,9 @@ module "rds_cluster" {
 }
 
 module "sg_membership_rancher" {
-    source = "git::ssh://git@github.com/moltin/terraform-modules.git//aws/networking/security_group/sg_custom_group?ref=0.2.1"
+    #source "git::ssh://git@github.com/moltin/terraform-modules.git//aws/networking/security_group/sg_custom_group?ref=0.2.1"
+    source = "github.com/moltin/terraform-modules//aws/networking/security_group/sg_custom_group"
+    version = "0.2.1"
 
     name        = "${var.name}-sg-membership-rancher"
     vpc_id      = "${data.terraform_remote_state.network.vpc_id}"
