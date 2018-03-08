@@ -1,5 +1,7 @@
 module "bastion" {
-    source = "git::ssh://git@github.com/moltin/terraform-stack.git//aws/bastion?ref=0.1.6"
+    #source = "git::ssh://git@github.com/moltin/terraform-stack.git//aws/bastion?ref=0.1.6"
+    source = "github.com/moltin/terraform-stack//aws/bastion"
+    version = "0.1.6"
 
     name       = "${var.name}"
     vpc_id     = "${data.terraform_remote_state.network.vpc_id}"
@@ -13,7 +15,9 @@ module "bastion" {
  * Bastion membership security group
  */
 module "sg_membership_bastion" {
-    source = "git::ssh://git@github.com/moltin/terraform-modules.git//aws/networking/security_group/sg_custom_group?ref=0.2.1"
+    #source = "git::ssh://git@github.com/moltin/terraform-modules.git//aws/networking/security_group/sg_custom_group?ref=0.2.1"
+    source = "github.com/moltin/terraform-modules//aws/networking/security_group/sg_custom_group"
+    version = "0.2.1"
 
     name        = "${var.name}-sg-membership-bastion"
     vpc_id      = "${data.terraform_remote_state.network.vpc_id}"
